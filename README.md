@@ -113,11 +113,11 @@ The configuration module defines pipeline parameters and input/output paths. The
 
 The standard luminance-weighted grayscale conversion is:
 
-\[
-I_{\text{gray}}=0.299R+0.587G+0.114B
-\]
+$$
+I_{\text{gray}} = 0.299R + 0.587G + 0.114B
+$$
 
-Where \(R\), \(G\), and \(B\) represent the red, green, and blue channel intensities.
+Where $R$, $G$, and $B$ represent the red, green, and blue channel intensities.
 
 ### 2. Image Registration and Alignment
 
@@ -133,16 +133,16 @@ The estimated transformation is used to align the images before comparison. High
 
 Differences in lighting can produce intensity changes even when the scene itself remains similar. A linear gain-and-offset model is fitted using verified-unchanged pixels:
 
-\[
-I_{\text{cur,norm}}=aI_{\text{ref}}+b
-\]
+$$
+I_{\text{cur,norm}} = aI_{\text{ref}} + b
+$$
 
 Where:
 
-- \(I_{\text{ref}}\) is the reference intensity.
-- \(I_{\text{cur,norm}}\) is the normalised current intensity.
-- \(a\) is the estimated brightness gain.
-- \(b\) is the estimated intensity offset.
+- $I_{\text{ref}}$ is the reference intensity.
+- $I_{\text{cur,norm}}$ is the normalised current intensity.
+- $a$ is the estimated brightness gain.
+- $b$ is the estimated intensity offset.
 
 This step reduces some global illumination differences before suspicious-region detection.
 
@@ -164,7 +164,7 @@ Using multiple cues helps the system analyse different types of changes rather t
 
 **Modules:** `detection.m`, `morphology.m`
 
-Detection thresholds are derived from the estimated distribution of verified-unchanged regions using a target false-alarm parameter, \(\alpha\).
+Detection thresholds are derived from the estimated distribution of verified-unchanged regions using a target false-alarm parameter, $\alpha$.
 
 The pipeline combines the available detection cues through voting and identifies candidate suspicious pixels and regions.
 
@@ -186,7 +186,7 @@ The pipeline calculates detection statistics, including:
 - Connected-region count and region measurements.
 - Bounding-box information.
 - An internal false-alarm self-check.
-- Threshold sensitivity across multiple values of \(\alpha\).
+- Threshold sensitivity across multiple values of $\alpha$.
 
 These measurements help explain how the selected thresholds influence the detection output.
 
@@ -312,71 +312,65 @@ The following equations explain the principal image-processing concepts used by 
 
 For an RGB image, the approximate luminance-based grayscale intensity is:
 
-\[
-I=0.299R+0.587G+0.114B
-\]
+$$
+I = 0.299R + 0.587G + 0.114B
+$$
 
 ### 2. Absolute Intensity Difference
 
 A basic pixel-wise difference between aligned images is:
 
-\[
-D(x,y)=\left|I_{\text{ref}}(x,y)-I_{\text{cur}}(x,y)\right|
-\]
+$$
+D(x, y) = \left| I_{\text{ref}}(x, y) - I_{\text{cur}}(x, y) \right|
+$$
 
-A larger \(D(x,y)\) indicates a larger intensity change at the corresponding pixel. The complete pipeline also considers texture and structural cues.
+A larger $D(x, y)$ indicates a larger intensity change at the corresponding pixel. The complete pipeline also considers texture and structural cues.
 
 ### 3. Brightness Normalisation
 
 The current image is normalised through a linear model:
 
-\[
-I_{\text{cur,norm}}(x,y)=aI_{\text{ref}}(x,y)+b
-\]
+$$
+I_{\text{cur,norm}}(x, y) = aI_{\text{ref}}(x, y) + b
+$$
 
-Here, \(a\) and \(b\) are the estimated gain and offset parameters.
+Here, $a$ and $b$ are the estimated gain and offset parameters.
 
 ### 4. Gradient Energy and Texture Loss
 
-For image intensity \(I\), gradient magnitude can be represented as:
+For image intensity $I$, gradient magnitude can be represented as:
 
-\[
-G(x,y)=\sqrt{G_x(x,y)^2+G_y(x,y)^2}
-\]
+$$
+G(x, y) = \sqrt{G_x(x, y)^2 + G_y(x, y)^2}
+$$
 
-Where \(G_x\) and \(G_y\) are horizontal and vertical gradients, respectively. Local gradient-energy comparisons help identify changes in texture.
+Where $G_x$ and $G_y$ are horizontal and vertical gradients, respectively. Local gradient-energy comparisons help identify changes in texture.
 
 A conceptual local texture-loss measure is:
 
-\[
-L_T=1-\frac{E_{\text{cur}}+\epsilon}
-{E_{\text{ref}}+\epsilon}
-\]
+$$
+L_T = 1 - \frac{E_{\text{cur}} + \epsilon}{E_{\text{ref}} + \epsilon}
+$$
 
-Where \(E_{\text{ref}}\) and \(E_{\text{cur}}\) represent local gradient energies and \(\epsilon\) is a small stabilising constant. This equation illustrates the concept; the precise implementation depends on the function's configured calculation.
+Where $E_{\text{ref}}$ and $E_{\text{cur}}$ represent local gradient energies and $\epsilon$ is a small stabilising constant. This equation illustrates the concept; the precise implementation depends on the function's configured calculation.
 
 ### 5. Normalised Cross-Correlation (NCC)
 
-For reference and current local image windows \(A\) and \(B\), the normalised cross-correlation is:
+For reference and current local image windows $A$ and $B$, the normalised cross-correlation is:
 
-\[
-\operatorname{NCC}(A,B)=
-\frac{\sum_i(A_i-\bar A)(B_i-\bar B)}
-{\sqrt{\sum_i(A_i-\bar A)^2}
-\sqrt{\sum_i(B_i-\bar B)^2}}
-\]
+$$
+\operatorname{NCC}(A, B) = \frac{\sum_i (A_i - \bar{A})(B_i - \bar{B})}{\sqrt{\sum_i (A_i - \bar{A})^2} \sqrt{\sum_i (B_i - \bar{B})^2}}
+$$
 
-Where \(\bar A\) and \(\bar B\) are the mean intensities of the windows. Lower correlation can indicate reduced structural similarity, though it may also arise from legitimate scene changes.
+Where $\bar{A}$ and $\bar{B}$ are the mean intensities of the windows. Lower correlation can indicate reduced structural similarity, though it may also arise from legitimate scene changes.
 
 ### 6. Changed-Area Percentage
 
-Let \(M(x,y)\) be a binary mask where 1 indicates a pixel classified as suspicious and 0 indicates a pixel not classified as suspicious. Let \(\Omega\) represent the comparable analysis region.
+Let $M(x, y)$ be a binary mask where 1 indicates a pixel classified as suspicious and 0 indicates a pixel not classified as suspicious. Let $\Omega$ represent the comparable analysis region.
 
-\[
-P_{\text{changed}}=
-\frac{\sum_{(x,y)\in\Omega}M(x,y)}
-{|\Omega|}\times100
-\]
+$$
+P_{\text{changed}} = \frac{\sum_{(x, y) \in \Omega} M(x, y)}{|\Omega|} \times 100
+$$
 
 This percentage represents the fraction of the analysed image area flagged by the algorithm. It is not necessarily the actual physical area obstructed in the real scene.
 
@@ -384,25 +378,21 @@ This percentage represents the fraction of the analysed image area flagged by th
 
 An empirical false-alarm rate on verified-unchanged pixels can be expressed as:
 
-\[
-FAR=
-\frac{N_{\text{unchanged flagged}}}
-{N_{\text{verified unchanged}}}\times100
-\]
+$$
+FAR = \frac{N_{\text{unchanged flagged}}}{N_{\text{verified unchanged}}} \times 100
+$$
 
 This is an internal diagnostic estimate based on the pipeline's verified-unchanged mask, not a substitute for validation against independently labelled ground-truth images.
 
 ### 8. Threshold Sensitivity
 
-For a threshold parameter \(\alpha\), sensitivity analysis compares the resulting detected area across several parameter settings:
+For a threshold parameter $\alpha$, sensitivity analysis compares the resulting detected area across several parameter settings:
 
-\[
-P_{\text{changed}}(\alpha)
-=\frac{N_{\text{flagged}}(\alpha)}
-{N_{\text{analysed}}}\times100
-\]
+$$
+P_{\text{changed}}(\alpha) = \frac{N_{\text{flagged}}(\alpha)}{N_{\text{analysed}}} \times 100
+$$
 
-The threshold-sensitivity graph illustrates how the estimated changed area varies as \(\alpha\) changes.
+The threshold-sensitivity graph illustrates how the estimated changed area varies as $\alpha$ changes.
 
 ## 📊 Baseline Experimental Results
 
@@ -413,8 +403,8 @@ The repository README records the following results for its bundled test images.
 | Detection decision | TAMPERING SUSPECTED |
 | Detected changed image area | 67.83% |
 | Connected suspicious regions | 1 |
-| Estimated camera scale | \((0.9887,\ 0.9987)\) |
-| Estimated image shift | \((+8.2,\ +2.3)\) pixels |
+| Estimated camera scale | $(0.9887, 0.9987)$ |
+| Estimated image shift | $(+8.2, +2.3)$ pixels |
 | Registration inlier blocks | 29 of 232 textured blocks |
 | Brightness gain | 0.850 |
 | Brightness offset | +13.2 |
