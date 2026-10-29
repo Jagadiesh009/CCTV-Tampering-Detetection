@@ -1,0 +1,33 @@
+# MATLAB temporary and autosave files
+*.asv
+*.m~
+*.mat
+*.fig~
+slprj/
+sfun_*.mex*
+*.mex*
+
+# Temporary files and backups
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and Editor configurations
+.vscode/*
+!.vscode/settings.json
+.idea/
+
+# Sensitive credentials and tokens
+*.env
+*.env.*
+*.token
+*.key
+*.pem
+*.secret
