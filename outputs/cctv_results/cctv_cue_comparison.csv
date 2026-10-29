@@ -1,0 +1,6 @@
+cue,pct_of_comparable_frame,pct_of_final_region_covered,pct_of_unchanged_blocks_flagged
+"Texture loss",49.9025,73.014,0.705194
+"Structure decorrelation",12.9837,19.0137,0.705194
+"Intensity change + smooth",43.4867,63.8905,0.0899444
+">= 2 cues agree",37.2669,54.9129,0.0763393
+"Final region",67.8349,100,2.74217

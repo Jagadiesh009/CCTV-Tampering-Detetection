@@ -1,0 +1,4 @@
+region,pixels,ref_mean,ref_std,current_mean,current_std
+"comparable_frame",773984,90.556,48.5518,42.4664,48.41
+"detected_region",525031,91.9851,49.2387,19.7876,18.1291
+"unchanged_region",248953,87.542,46.928,90.2949,56.7497
