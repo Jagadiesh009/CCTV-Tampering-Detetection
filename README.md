@@ -508,15 +508,6 @@ The project uses established concepts from digital image processing, including:
 
 The repository's implementation and exported outputs are the primary references for its exact pipeline configuration and reported results.
 
-## 🔗 Repository and Contributors
-
-**Source Code:**  
-[github.com/JAGADIESH009/CCTV-Tampering-Detetection](https://github.com/JAGADIESH009/CCTV-Tampering-Detetection)
-
-**Contributor Profiles:**
-
-- [JAGADIESH009 — GitHub Profile](https://github.com/JAGADIESH009)
-- [Bhagyaashreee — GitHub Profile](https://github.com/Bhagyaashreee)
 
 ## 📄 Project Disclaimer
 
