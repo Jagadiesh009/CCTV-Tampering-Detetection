@@ -13,7 +13,7 @@ The implementation is designed to operate without AI/ML models or dependence on 
 
 **Project Contributors**
 
-- [JAGADIESH009](https://github.com/JAGADIESH009) — GitHub Profile
+- [JAGADIESH009](https://github.com/Jagadiesh009) — GitHub Profile
 - [Bhagyaashreee](https://github.com/Bhagyaashreee) — GitHub Profile
 
 **Institution:** VIT-AP University  
