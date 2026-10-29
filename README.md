@@ -3,7 +3,6 @@
 ![MATLAB](https://img.shields.io/badge/MATLAB-Digital%20Image%20Processing-blue)
 ![Domain](https://img.shields.io/badge/Domain-Computer%20Vision-purple)
 ![Method](https://img.shields.io/badge/Method-Classical%20DIP-green)
-![AI/ML](https://img.shields.io/badge/AI%2FML-Not%20Required-orange)
 ![Status](https://img.shields.io/badge/Status-Academic%20Project-success)
 
 A modular MATLAB-based Digital Image Processing (DIP) project for detecting potential CCTV camera tampering by comparing a normal reference frame with a current surveillance image. The system uses image registration, brightness normalisation, texture analysis, structural correlation, intensity differences, statistical thresholding, and morphological region refinement to identify suspicious changes and visualise affected areas.
