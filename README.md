@@ -359,7 +359,7 @@ Where $E_{\text{ref}}$ and $E_{\text{cur}}$ represent local gradient energies an
 For reference and current local image windows $A$ and $B$, the normalised cross-correlation is:
 
 $$
-\operatorname{NCC}(A, B) = \frac{\sum_i (A_i - \bar{A})(B_i - \bar{B})}{\sqrt{\sum_i (A_i - \bar{A})^2} \sqrt{\sum_i (B_i - \bar{B})^2}}
+\{NCC}(A, B) = \frac{\sum_i (A_i - \bar{A})(B_i - \bar{B})}{\sqrt{\sum_i (A_i - \bar{A})^2} \sqrt{\sum_i (B_i - \bar{B})^2}}
 $$
 
 Where $\bar{A}$ and $\bar{B}$ are the mean intensities of the windows. Lower correlation can indicate reduced structural similarity, though it may also arise from legitimate scene changes.
